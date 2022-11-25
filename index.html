@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>近世代数</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>        
+        <a href="#"><img src="jsds.jpg" alt=""></a>
+        <h1>Abstract Algebra</h1>  
+        
+        <li style="--clr:#e56a00">
+            <a href="Algebra+Artin抽象代数经典教材.pdf" data-text="book&nbsp;">&nbsp;the&nbsp;</a>
+        </li>
+        <p></p>
+        <li style="--clr:#e56a00">
+            <a href="#" data-text="answer&nbsp;">&nbsp;the&nbsp;</a>
+        </li>        
+        <p></p>
+        <li style="--clr:#e56a00">
+            <a href="Content.html" data-text="map&nbsp;">&nbsp;the&nbsp;</a>
+        </li>  
+        <p></p>
+        <li style="--clr:#e56a00">
+            <a href="Mean.html" data-text="mean&nbsp;">&nbsp;the&nbsp;</a>
+        </li>
+
+        <p>&ensp;</p>
+        <h3>EDIT BY T.L.</h3>
+
+    </body>
+    <style>
+        body
+        {
+            padding: 0;
+            margin: 8em;
+            background: #1d2b3a;
+        }
+        a
+        {                       
+            justify-content: center;
+            text-align: middle;
+            display: flex;
+            font-size: 3em;
+                       
+        }
+        img
+        {
+            border-radius: 5px; 
+            transition: 0.6s;
+        }
+        img:hover
+        {
+            transform: scale(1.05);
+            transform: translateX(-30deg);
+        }
+        h1
+        {                    
+            justify-content: center;
+            text-align: middle;
+            display: flex;
+            font-size: 3em;
+            color: blanchedalmond;            
+        }
+        h3
+        {                    
+            justify-content: center;
+            text-align: middle;
+            display: flex;
+            font-size: 1em;
+            color: blanchedalmond;            
+        }
+        li
+        {
+            display: inline-block;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            list-style: none;                   
+            
+        }
+        li a
+        {
+            position: flex;
+            font-size: 2em;
+            text-decoration: none;  /*去下划线*/
+            line-height: 1em;       /*列间距*/
+            letter-spacing: 2px;    /*字母间距*/
+            text-transform: uppercase;  /*自动大写*/
+            color: transparent;     /*透明色*/
+            -webkit-text-stroke: 1px rgba(255,255,255,0.5);     /*文字描边*/      
+        }
+        li a::before
+        {
+            content: attr(data-text);
+            position: flex;
+            
+            width: 0;
+            overflow: hidden;   /*隐藏data-text*/
+            transition: 0.5s;   /*变换时间*/
+            border-right: 1px solid var(--clr);     /*修饰竖线*/
+            -webkit-text-stroke: 1px var(--clr);    /*文字描边*/
+        }
+        li a:hover::before
+        {
+            width: 100%;
+            /*filter: drop-shadow(0 0 25px var(--clr));   /*辉光*/
+        }
+        audio
+        {
+            font-size: 1em;
+
+        }
+    </style>
+</html>
