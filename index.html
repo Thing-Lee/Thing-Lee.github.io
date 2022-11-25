@@ -1,111 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Thing Lee</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-    </head>
-    <body>        
-        <a href="#"><img src="jsds.jpg" alt=""></a>
-        <h1>Abstract Algebra</h1>  
-        
-        <li style="--clr:#e56a00">
-            <a href="Algebra+Artin抽象代数经典教材.pdf" data-text="book&nbsp;">&nbsp;the&nbsp;</a>
-        </li>
-        <p></p>
-        <li style="--clr:#e56a00">
-            <a href="#" data-text="answer&nbsp;">&nbsp;the&nbsp;</a>
-        </li>        
-        <p></p>
-        <li style="--clr:#e56a00">
-            <a href="Content.html" data-text="map&nbsp;">&nbsp;the&nbsp;</a>
-        </li>  
-        <p></p>
-        <li style="--clr:#e56a00">
-            <a href="Mean.html" data-text="mean&nbsp;">&nbsp;the&nbsp;</a>
-        </li>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thing Lee</title>
+</head>
+<body>
+    <div class="road">
+        <div class="taxi">
+            <div class="light_beam"></div>
+            <span>
+                <b></b>
+                <i></i>
+            </span>
+        </div>
+        <div class="taxi">
+            <div class="light_beam"></div>
+            <span>
+                <b></b>
+                <i></i>
+            </span>
+        </div>
+    </div>
+</body>
+<style>
 
-        <p>&ensp;</p>
-        <h3>EDIT BY T.L.</h3>
-
-    </body>
-    <style>
-        body
-        {
-            padding: 0;
-            margin: 8em;
-            background: #1d2b3a;
-        }
-        a
-        {                       
-            justify-content: center;
-            text-align: middle;
-            display: flex;
-            font-size: 3em;
-                       
-        }
-        img
-        {
-            border-radius: 5px; 
-            transition: 0.6s;
-        }
-        img:hover
-        {
-            transform: scale(1.05);
-            transform: translateX(-30deg);
-        }
-        h1
-        {                    
-            justify-content: center;
-            text-align: middle;
-            display: flex;
-            font-size: 3em;
-            color: blanchedalmond;            
-        }
-        h3
-        {                    
-            justify-content: center;
-            text-align: middle;
-            display: flex;
-            font-size: 1em;
-            color: blanchedalmond;            
-        }
-        li
-        {
-            display: inline-block;
-            text-align: center;
-            justify-content: center;
-            display: flex;
-            list-style: none;                   
-            
-        }
-        li a
-        {
-            position: flex;
-            font-size: 2em;
-            text-decoration: none;  /*去下划线*/
-            line-height: 1em;       /*列间距*/
-            letter-spacing: 2px;    /*字母间距*/
-            text-transform: uppercase;  /*自动大写*/
-            color: transparent;     /*透明色*/
-            -webkit-text-stroke: 1px rgba(255,255,255,0.5);     /*文字描边*/      
-        }
-        li a::before
-        {
-            content: attr(data-text);
-            position: flex;
-            
-            width: 0;
-            overflow: hidden;   /*隐藏data-text*/
-            transition: 0.5s;   /*变换时间*/
-            border-right: 1px solid var(--clr);     /*修饰竖线*/
-            -webkit-text-stroke: 1px var(--clr);    /*文字描边*/
-        }
-        li a:hover::before
-        {
-            width: 100%;
-            /*filter: drop-shadow(0 0 25px var(--clr));   /*辉光*/
-        }
-    </style>
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #ededed;
+}
+.road
+{
+    position: relative;
+    width: 700px;
+    height: 150px;
+    background: #333;
+    border-radius: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+.road::before
+{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg,#fff,#fff 50%,transparent 50%,transparent 100%);
+    background-size: 50px;
+    animation: animate_road 0.125s linear infinite;
+}
+@keyframes animate_road
+{
+    0%
+    {
+        background-position: 50px 0;
+    }
+    100%
+    {
+        background-position: 0 0;
+    }
+}
+.taxi
+{
+    position: absolute;
+    left: 50px;
+    width: 200px;
+    height: 80px;
+    background: #f4b603;
+    border-radius: 10px;
+    box-shadow: -10px 10px rgba(0, 0, 0, 0.25);
+    transform-style: preserve-3d;
+    perspective: 800px;
+    animation: animate_taxi 2s linear infinite;
+    z-index: 10;
+}
+/*第二辆车*/
+.taxi:nth-child(2)
+{
+    left: initial;
+    right: 150px;
+    animation: animate_taxi 4s linear infinite;
+    animation-delay: -1s;
+    z-index: 9;
+}
+/*移动效果*/
+@keyframes animate_taxi
+{
+    0%
+    {
+        transform: translateX(20px) translateY(-20px);
+    }
+    25%
+    {
+        transform: translateX(-10px) translateY(0px);
+    }
+    50%
+    {
+        transform: translateX(20px) translateY(20px);
+    }
+    75%
+    {
+        transform: translateX(-10px) translateY(0px);
+    }
+    100%
+    {
+        transform: translateX(20px) translateY(-20px);
+    }
+}
+.taxi::before
+{
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 2px;
+    width: 5px;
+    height: 15px;
+    border-radius: 2px;
+    background: #fc3c25;
+    box-shadow: 0 42px #fc3c25;
+}
+.taxi::after
+{
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 2px;
+    width: 6px;
+    height: 16px;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 44px #fff;
+}
+/*车顶，以及车顶标志*/
+.taxi span
+{
+    position: absolute;
+    inset: 5px 10px;
+    background: #fdd206;
+    border-radius: 10px;
+    overflow: hidden;   /*可以遮盖斜车窗多出部分*/
+}
+.taxi span::before
+{
+    content: 'Taxi';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+    background: #fff;
+    padding: 2px;
+    font-size: 0.75em;
+    font-weight: 1000;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #0005;
+    z-index: 10;
+}
+/*汽车车窗俯视*/
+.taxi span b
+{
+    position: absolute;
+    inset: 0 30px;
+    background: #111;
+    border-radius: 10px;
+}
+.taxi span b::before
+{
+    content: '';
+    position: absolute;
+    inset: 6px 25px;
+    background: #fdd206;
+    border-radius: 5px;
+}
+.taxi span b::after
+{
+    content: '';
+    position: absolute;
+    inset: 0px 58px;
+    background: #fdd206;
+}
+/*车窗斜边*/
+.taxi span i
+{
+    position: absolute;
+    inset: 0;
+}
+.taxi span i::before
+{
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 20px;
+    width: 40px;
+    height: 5px;
+    background: #fdd206;
+    transform-origin: right;
+    transform: rotate(15deg);
+    box-shadow: 100px 34px #fdd206;
+}
+.taxi span i::after
+{
+    content: '';
+    position: absolute;
+    bottom: 7px;
+    left: 20px;
+    width: 40px;
+    height: 5px;
+    background: #fdd206;
+    transform-origin: right;
+    transform: rotate(-15deg);
+    box-shadow: 100px -34px #fdd206;
+}
+.taxi .light_beam
+{
+    position: absolute;
+    top: 5px;
+    right: -2px;
+    width: 10px;
+    height: 70px;
+    background: #0002;
+    border-radius: 15px;
+    transform-style: preserve-3d;
+}
+.taxi .light_beam::before
+{
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 150px;
+    height: 16px;
+    background: linear-gradient(90deg,#fff6,transparent);
+    transform-origin: left;
+    transform: perspective(500px) rotateY(-50deg);
+}
+.taxi .light_beam::after
+{
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 150px;
+    height: 16px;
+    background: linear-gradient(90deg,#fff6,transparent);
+    transform-origin: left;
+    transform: perspective(500px) rotateY(-50deg);
+}
+</style>
 </html>
