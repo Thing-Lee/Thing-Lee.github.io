@@ -52,6 +52,8 @@ const subTitle = document.querySelectorAll('.sub-title');
 const img = document.querySelector('.thumbnail');
 const count = document.querySelector('.slider-count');
 const progress = document.querySelector('.progress div');
+const introduce = document.querySelector('.introduce');
+
 
 let id = 0;
 
@@ -75,6 +77,12 @@ const text = [
     '分析',
     '代数',
     '几何',
+]
+
+const introduces = [
+    '出于对微积分在理论体系上的严格化和精确化,从而确立了在整个自然科学中的基础地位,并运用于自然科学的各个领域',
+    '研究数、数量、关系、结构与代数方程（组）的通用解法及其性质的数学分支',
+    '研究空间结构及性质的一门学科。它是数学中最基本的研究内容之一，与分析、代数等等具有同样重要的地位，并且关系极为密切',
 ]
 
 //Pagination Controls
@@ -105,7 +113,8 @@ function slider(i) {
     //Progress progression
     progress.style.width = progressWidth[i];
     //Change Title 
-    title.innerText = text[i] + "知识";
+    title.innerText = text[i] + "";
+    introduce.innerText = introduces[i]
     //Change Sub Title
     subTitle.forEach(sub => {
         sub.innerText = text[i] + "知识"

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>Author</title>
+    <link rel="stylesheet" href="16.css">
+</head>
+
+<body>
+    <canvas id="my_canvas"></canvas>
+    <p>
+        <span class="text" ></span>
+    </p>
+    <small>
+        Copyright © Thing Lee —— 2022  &emsp13;
+        <a href="#">联系我</a>
+    </small>
+    <img src="Myself.png" alt="">
+</body>
+
+<script>
+    const text = document.querySelector('.text');
+    const txt  =["这里是本站作者，一名喜欢几何的普通大学生</br>网站由html，css，javascript编写而成</br>用manim，geogebra，MATLAB等软件理解数学问题</br>欢迎大家给我提出建议"]; 
+    
+    var index=0;
+    var XB= 0;
+    var huan = true;
+ 
+    setInterval(function(){
+       
+       if(huan){      
+           text.innerHTML = txt[XB].slice(0,++index);
+           console.log(index);
+       }
+       
+
+   },200)
+
+</script>
+
+</html>
+<!-- 引入粒子插件 -->
+<script src="particle.min.js"></script>
+<script>
+    // 初始化粒子（画布id）
+    particle.init('my_canvas');
+</script>

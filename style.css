@@ -2,7 +2,7 @@
 {
     --primary: #fff;
     --secondary: #a2a2a2;
-    --accent: #ff4d00;
+    --accent: #00d200;
 }
 
 body
@@ -427,3 +427,10 @@ aside
 {
     scale: 1.1;
 }
+
+.introduce
+{
+    padding-top: 1em;
+    border-top: 1px solid var(--secondary);
+}
+
