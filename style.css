@@ -386,6 +386,11 @@ aside
     {
         flex-direction: column;
     }
+    /*让小图不那么大*/
+    .header-bottom img
+    {
+        width: 10em;
+    }
     .item-centered
     {
         margin: 0;
