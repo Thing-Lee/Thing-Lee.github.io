@@ -377,6 +377,15 @@ aside
     .title
     {
         font-size: 3.5em;
+        margin-left: .5em;/*间距*/
+    }
+    .introduce
+    {
+        margin-left: 1em;/*首段间距*/
+    }
+    .pagination-mobile
+    {
+        margin-left: 1em;/*换页符间距*/
     }
 }
 
