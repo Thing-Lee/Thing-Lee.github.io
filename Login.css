@@ -1,7 +1,7 @@
 /* 谷歌字体线上 */
 /* @import url('https://fonts.googleapis.com/css?family=Quicksand:wght@300;400;500;600;700;&display=swap'); */
 /* 谷歌字体本地 */
-@import './google-font.css';
+@import 'google-font.css';
 
 *{
   margin: 0;
