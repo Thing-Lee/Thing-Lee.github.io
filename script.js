@@ -1,158 +1,113 @@
-//Navbar Slider
-const menuBtn = document.querySelectorAll('.menu-btn');
-const menu = document.querySelector('.menu');
-const links = document.querySelectorAll('.menu li');
+'use strict';
 
-//Toggle silderbar open or close
-menuBtn.forEach(btn => {btn.addEventListener('click',sideNavToggle);})
 
-function sideNavToggle()
-{
-    //Animation delay
-    let delay = 100;
-    //Toggle open class
-    menu.classList.toggle('menu-open');
 
-    //Sidenav Link Slide Animations
-    setTimeout(() =>{
-        //Reset animations after all of them end
-        resetAnimations();
-    },delay * (links.length + 1));
+/**
+ * Add event listener on multiple elements
+ */
 
-    //Add animation to links
-    links.forEach(link => {
-        //Opacity
-        link.style.opacity = "0";
-        //Animation
-        link.style.animation = "slideIn 400ms ease-in-out forwards";
-        //Delay
-        link.style.animationDelay = delay + "ms";
-
-        //Increase delay for eacj link
-        delay += 100;
-    });
-
-    /*Reset animations so they can be actived again*/
-    function resetAnimations(){
-        //Select all items
-        links.forEach(link => {
-            //Remove animations
-            link.style.animation = "none";
-            //Set opacity back to default
-            link.style.opacity = "1";
-        });
-    }
+const addEventOnElements = function (elements, eventType, callback) {
+  for (let i = 0, len = elements.length; i < len; i++) {
+    elements[i].addEventListener(eventType, callback);
+  }
 }
 
-//Slider
-const cntrl = document.querySelectorAll('.slider-cntrl');
-const cntrlMob = document.querySelectorAll('.pagination-mobile > li');
-const title = document.querySelector('.title');
-const subTitle = document.querySelectorAll('.sub-title');
-const img = document.querySelector('.thumbnail');
-const count = document.querySelector('.slider-count');
-const progress = document.querySelector('.progress div');
-const introduce = document.querySelector('.introduce');
 
 
-let id = 0;
+/**
+ * MOBILE NAVBAR TOGGLER
+ */
 
-//Data 
-//Array with image paths for the slider
-const images = [
-    'img1.jpg',
-    'img2.jpg',
-    'img3.png',
-];
+const navbar = document.querySelector("[data-navbar]");
+const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 
-//Progress widths for the slider
-const progressWidth = [
-    '33%',
-    '66%',
-    '100%',
-];
-
-//Text variations for the slider
-const text = [
-    '分析',
-    '代数',
-    '几何',
-]
-
-const introduces = [
-    '出于对微积分在理论体系上的严格化和精确化,从而确立了在整个自然科学中的基础地位,并运用于自然科学的各个领域',
-    '研究数、数量、关系、结构与代数方程（组）的通用解法及其性质的数学分支',
-    '研究空间结构及性质的一门学科。它是数学中最基本的研究内容之一，与分析、代数等等具有同样重要的地位，并且关系极为密切',
-]
-
-//Pagination Controls
-for(let i = 0; i < cntrl.length; i++){
-    //Add click event for all pagination
-    cntrl[i].addEventListener('click', () => {
-        //Run the slider function
-        slider(i);
-        //Set id to clicked pagination index
-        id = i;
-        //Stop Auto Slide
-        stopAutoSlide();
-    });
-    //Add click event for all pagination on mobile
-    cntrlMob[i].addEventListener('click', () => {
-        //Run the slider function
-        slider(i);
-        //Set id to clicked pagination index
-        id = i;
-        //Stop Auto Slide
-        stopAutoSlide();
-    });
+const toggleNav = () => {
+  navbar.classList.toggle("active");
+  document.body.classList.toggle("nav-active");
 }
 
-function slider(i) {
-    //Change thumbnail image
-    img.src = images[i];
-    //Progress progression
-    progress.style.width = progressWidth[i];
-    //Change Title 
-    title.innerText = text[i] + "";
-    introduce.innerText = introduces[i]
-    //Change Sub Title
-    subTitle.forEach(sub => {
-        sub.innerText = text[i] + "知识"
-    });
+addEventOnElements(navTogglers, "click", toggleNav);
 
-    //Change Slide Number
-    count.innerText = "/ 0" + (i + 1);
 
-    //Remove active class from all
-    for(let i = 0;i < cntrl.length; i++) {
-        cntrl[i].classList.remove('active');
-        cntrlMob[i].classList.remove('pag-active');
-    }
 
-    //Reset active class to clicked element
-    cntrl[i].classList.add('active');
-    cntrlMob[i].classList.add('pag-active');
+/**
+ * HEADER ANIMATION
+ * When scrolled donw to 100px header will be active
+ */
+
+const header = document.querySelector("[data-header]");
+const backTopBtn = document.querySelector("[data-back-top-btn]");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+  } else {
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
+  }
+});
+
+
+
+/**
+ * SLIDER
+ */
+
+const slider = document.querySelector("[data-slider]");
+const sliderContainer = document.querySelector("[data-slider-container]");
+const sliderPrevBtn = document.querySelector("[data-slider-prev]");
+const sliderNextBtn = document.querySelector("[data-slider-next]");
+
+let totalSliderVisibleItems = Number(getComputedStyle(slider).getPropertyValue("--slider-items"));
+let totalSlidableItems = sliderContainer.childElementCount - totalSliderVisibleItems;
+
+let currentSlidePos = 0;
+
+const moveSliderItem = function () {
+  sliderContainer.style.transform = `translateX(-${sliderContainer.children[currentSlidePos].offsetLeft}px)`;
 }
 
-//Slider Automation
-function nextSlide() {
-    //Increment img id
-    id++;
-    /*Check if id is greater than the number of available slides*/
-    if (id > cntrl.length  - 1) {
-        id = 0;
-    }
-    //Run the slider function
-    slider(id);
+/**
+ * NEXT SLIDE
+ */
+
+const slideNext = function () {
+  const slideEnd = currentSlidePos >= totalSlidableItems;
+
+  if (slideEnd) {
+    currentSlidePos = 0;
+  } else {
+    currentSlidePos++;
+  }
+
+  moveSliderItem();
 }
 
-//Automate Slider
-let autoSlide = setInterval(nextSlide, 10000);
+sliderNextBtn.addEventListener("click", slideNext);
 
-//Stop Automatic Slide
-function stopAutoSlide() {
-    clearInterval(autoSlide);
+/**
+ * PREVIOUS SLIDE
+ */
 
-    //Restart Auto Slider
-    autoSlide = setInterval(nextSlide, 10000);
+const slidePrev = function () {
+  if (currentSlidePos <= 0) {
+    currentSlidePos = totalSlidableItems;
+  } else {
+    currentSlidePos--;
+  }
+
+  moveSliderItem();
 }
+
+sliderPrevBtn.addEventListener("click", slidePrev);
+
+/**
+ * RESPONSIVE
+ */
+window.addEventListener("resize", function () {
+  totalSliderVisibleItems = Number(getComputedStyle(slider).getPropertyValue("--slider-items"));
+  totalSlidableItems = sliderContainer.childElementCount - totalSliderVisibleItems;
+
+  moveSliderItem();
+});
