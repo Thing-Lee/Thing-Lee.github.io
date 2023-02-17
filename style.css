@@ -960,7 +960,7 @@ body.nav-active { overflow: hidden; }
  * responsive for large than 575px screen
  */
 
-@media (min-width: 500px) {
+@media (min-width: 300px) {
 
   /**
    * CUSTOM PROPERTY
