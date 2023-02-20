@@ -444,8 +444,9 @@ body.nav-active
 }
 
 .copyright-text {
-  color: var(--basic-white);
-  font-size: var(--fontSize-8);
+    color: var(--light-red);
+    font-size: var(--fontSize-8);
+    border-block: 1px solid var(--basic-white);
 }
 
 
