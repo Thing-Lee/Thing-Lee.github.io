@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="lyc.css">
+</head>
+<body>
+    <section>
+        <img src="lyc1.jpg" alt="" id="slider">
+        <div class="navigation">
+            <li onclick="imgSlider('lyc1.jpg')">
+                <img src="lyc1.1.jpg" alt="">
+            </li>
+            <li onclick="imgSlider('lyc2.jpg')">
+                <img src="lyc2.1.jpg" alt="">
+            </li>
+            <li onclick="imgSlider('lyc3.jpg')">
+                <img src="lyc3.1.jpg" alt="">
+            </li>
+            <li onclick="imgSlider('lyc4.jpg')">
+                <img src="lyc4.1.jpg" alt="">
+            </li>
+            <li onclick="imgSlider('lyc5.jpg')">
+                <img src="lyc5.1.jpg" alt="">
+            </li>
+        </div>
+        <h2>Hope You Happy Anyway~</h2>
+    </section>
+    <script>
+        function imgSlider (imgSrc)
+        {
+            document.getElementById('slider').src = imgSrc
+        }
+    </script>
+</body>
+</html>
