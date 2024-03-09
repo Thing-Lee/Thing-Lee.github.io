@@ -460,7 +460,7 @@ body.nav-active
 
 .hero 
 { 
-    padding-block-start: calc(var(--section-padding) + 160px); 
+    padding-block-start: calc(var(--section-padding) + 0px); 
 }
 
 .hero .container 
